@@ -25,6 +25,8 @@ namespace dotnetproject.Models
         {
         }
 
+        public DbSet<MyModels> Mymodels { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

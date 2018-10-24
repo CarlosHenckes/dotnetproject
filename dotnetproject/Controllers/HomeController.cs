@@ -1,4 +1,5 @@
-﻿using System;
+﻿using dotnetproject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,9 @@ namespace dotnetproject.Controllers
 {
     public class HomeController : Controller
     {
+
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
             return View();
@@ -18,6 +22,14 @@ namespace dotnetproject.Controllers
             ViewBag.Message = "Your application description page.";
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult GetAbout(MyModels myModels)
+        {
+            db.Mymodels.Add(myModels);
+            db.SaveChanges();
+            return RedirectToAction("About");
         }
 
         public ActionResult Contact()
